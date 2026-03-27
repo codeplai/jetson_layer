@@ -1,0 +1,19 @@
+[Unit]
+Description=MINEBOT-Q Jetson Orin NX Layer
+After=network.target
+
+[Service]
+Type=simple
+User=unitree
+WorkingDirectory=/home/unitree/minebot_ws
+ExecStart=/bin/bash -c "source /opt/ros/humble/setup.bash && \
+  source /home/unitree/minebot_ws/install/setup.bash && \
+  export ROS_DOMAIN_ID=42 && \
+  export ROS_LOCALHOST_ONLY=0 && \
+  ros2 launch jetson_layer jetson_layer.launch.py"
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

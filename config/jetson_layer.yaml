@@ -1,0 +1,28 @@
+camera_node:
+  ros__parameters:
+    device_id: 0
+    fps: 15
+    confidence_threshold: 0.45
+    model_path: "/home/unitree/minebot_ws/models/yolov8n_mining_int8.onnx"
+    use_cuda: true
+
+lidar_node:
+  ros__parameters:
+    min_range: 0.3
+    max_range: 30.0
+    frame_id: "lidar_link"
+    scan_frequency_hz: 10.0
+
+go2_bridge_node:
+  ros__parameters:
+    confirmation_timeout_sec: 2.0
+    retreat_distance_m: 2.0
+    speed_reduction_factor: 0.5
+    simulation_mode: false
+    lidar_obstacle_distance_m: 1.5
+    normal_linear_speed: 0.4
+
+state_publisher_node:
+  ros__parameters:
+    publish_rate_hz: 2.0
+    battery_warn_level: 20.0
