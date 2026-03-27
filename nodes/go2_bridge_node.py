@@ -114,7 +114,7 @@ class Go2BridgeNode(Node):
         has_obstacle = False
         for det in msg.detections:
             for result in det.results:
-                label = result.hypothesis.class_id
+                label = result.id
                 if label in ('person', 'obstacle', 'crack', 'flood'):
                     has_obstacle = True
                     break

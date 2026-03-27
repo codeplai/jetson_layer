@@ -7,6 +7,7 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image, CompressedImage
 from vision_msgs.msg import Detection2DArray, Detection2D, ObjectHypothesisWithPose
+from builtin_interfaces.msg import Duration
 from cv_bridge import CvBridge
 
 MINING_CLASSES = {0: 'person', 1: 'obstacle', 2: 'crack', 3: 'flood'}
@@ -111,14 +112,14 @@ class CameraNode(Node):
                 continue
 
             det = Detection2D()
-            det.bbox.center.position.x = float(cx * scale_x)
-            det.bbox.center.position.y = float(cy * scale_y)
+            det.bbox.center.x = float(cx * scale_x)
+            det.bbox.center.y = float(cy * scale_y)
             det.bbox.size_x = float(w * scale_x)
             det.bbox.size_y = float(h * scale_y)
 
             hyp = ObjectHypothesisWithPose()
-            hyp.hypothesis.class_id = MINING_CLASSES[class_id]
-            hyp.hypothesis.score = confidence
+            hyp.id = MINING_CLASSES[class_id]
+            hyp.score = confidence
             det.results.append(hyp)
             detections.append(det)
 

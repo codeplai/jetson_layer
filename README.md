@@ -43,17 +43,29 @@ Capa de visión, LiDAR y control del Go2 para inspección minera subterránea.
 ## Requisitos
 
 - JetPack 5.x (Ubuntu 20.04) en Jetson Orin NX
-- ROS2 Humble instalado nativo
-- Python 3.10
+- ROS2 Foxy instalado nativo
+- Python 3.8+
+
+### Instalacion ROS2 Foxy nativa en JetPack
+
+```bash
+sudo apt install software-properties-common curl -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
+  -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
+  http://packages.ros.org/ros2/ubuntu focal main" | \
+  sudo tee /etc/apt/sources.list.d/ros2.list
+sudo apt update && sudo apt install ros-foxy-ros-base python3-colcon-common-extensions -y
+```
 
 ```bash
 # Dependencias ROS2
 sudo apt install \
-  ros-humble-vision-msgs \
-  ros-humble-rosbridge-server \
-  ros-humble-sensor-msgs \
-  ros-humble-geometry-msgs \
-  ros-humble-cv-bridge -y
+  ros-foxy-vision-msgs \
+  ros-foxy-rosbridge-server \
+  ros-foxy-sensor-msgs \
+  ros-foxy-geometry-msgs \
+  ros-foxy-cv-bridge -y
 
 # Dependencias Python
 pip install -r requirements.txt
@@ -99,10 +111,13 @@ ros2 topic hz /gas/mq4     # esperado: ~10 Hz
 ros2 topic list
 ```
 
-Ambos dispositivos deben tener:
+Ambos dispositivos deben tener en `~/.bashrc`:
 ```bash
+source /opt/ros/foxy/setup.bash
+source ~/minebot_ws/install/setup.bash
 export ROS_DOMAIN_ID=42
 export ROS_LOCALHOST_ONLY=0
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 ```
 
 ## Instalar como servicio systemd
