@@ -76,13 +76,13 @@ pip install -r requirements.txt
 ```bash
 pip install ultralytics
 yolo export model=yolov8n.pt format=onnx imgsz=640
-# Copiar el .onnx a /home/unitree/minebot_ws/models/
+# Copiar el .onnx a /home/unitree/cyclonedds_ws/models/
 ```
 
 ## Build
 
 ```bash
-cd ~/minebot_ws
+cd ~/cyclonedds_ws
 colcon build --packages-select jetson_layer
 source install/setup.bash
 ```
@@ -114,10 +114,10 @@ ros2 topic list
 Ambos dispositivos deben tener en `~/.bashrc`:
 ```bash
 source /opt/ros/foxy/setup.bash
-source ~/minebot_ws/install/setup.bash
+source ~/cyclonedds_ws/install/setup.bash
 export ROS_DOMAIN_ID=42
 export ROS_LOCALHOST_ONLY=0
-export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ```
 
 ## Instalar como servicio systemd
@@ -136,7 +136,7 @@ journalctl -u minebot-jetson -f
 ## Tests
 
 ```bash
-cd ~/minebot_ws/src/jetson_layer
+cd ~/cyclonedds_ws/src/jetson_layer
 pytest test/test_dual_confirmation.py -v
 ```
 

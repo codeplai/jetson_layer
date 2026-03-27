@@ -4,7 +4,7 @@ camera_node:
     device_id: 0
     fps: 15
     confidence_threshold: 0.45
-    model_path: "/home/unitree/minebot_ws/models/yolov8n_mining_int8.onnx"
+    model_path: "/home/unitree/cyclonedds_ws/models/yolov8n_mining_int8.onnx"
     use_cuda: true
 
 lidar_node:
