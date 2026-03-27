@@ -5,9 +5,9 @@ After=network.target
 [Service]
 Type=simple
 User=unitree
-WorkingDirectory=/home/unitree/cyclonedds_ws
+WorkingDirectory=/home/unitree/ros2_ws
 ExecStart=/bin/bash -c "source /opt/ros/foxy/setup.bash && \
-  source /home/unitree/cyclonedds_ws/install/setup.bash && \
+  source /home/unitree/ros2_ws/install/setup.bash && \
   export ROS_DOMAIN_ID=42 && \
   export ROS_LOCALHOST_ONLY=0 && \
   ros2 launch jetson_layer jetson_layer.launch.py"

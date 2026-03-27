@@ -21,7 +21,7 @@ class CameraNode(Node):
         self.declare_parameter('fps', 15)
         self.declare_parameter('confidence_threshold', 0.45)
         self.declare_parameter('model_path',
-                               '/home/unitree/cyclonedds_ws/models/yolov8n_mining_int8.onnx')
+                               '/home/unitree/ros2_ws/models/yolov8n_mining_int8.onnx')
         self.declare_parameter('use_cuda', True)
 
         self.device_id = self.get_parameter('device_id').value
